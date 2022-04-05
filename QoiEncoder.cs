@@ -66,30 +66,15 @@ public static class QoiEncoder
                     if (pixel.R == comparePixel.R && pixel.G == comparePixel.G && pixel.B == comparePixel.B && pixel.A == comparePixel.A && pixelIndex > 0)
                     {
                         stream.WriteByte((byte)arrIndex);
-                        // stream.WriteByte(0b11111111);
-                        // stream.WriteByte(pixel.R);
-                        // stream.WriteByte(pixel.G);
-                        // stream.WriteByte(pixel.B);
-                        // stream.WriteByte(pixel.A);
                     }
                     else if (-2 <= diff.R && diff.R < 1 && -2 <= diff.G && diff.G < 1 && -2 <= diff.B && diff.B < 1 && pixel.A == prev.A)
                     {
                         stream.WriteByte((byte)(0b01000000 | ((diff.R + 2) << 4) | ((diff.G + 2) << 2) | (diff.B + 2)));
-                        // stream.WriteByte(0b11111111);
-                        // stream.WriteByte(pixel.R);
-                        // stream.WriteByte(pixel.G);
-                        // stream.WriteByte(pixel.B);
-                        // stream.WriteByte(pixel.A);
                     }
                     else if (-32 <= lumaG && lumaG <= 31 && -8 <= lumaR && lumaR <= 7 && -8 <= lumaB && lumaB <= 7 && pixel.A == prev.A)
                     {
                         stream.WriteByte((byte)(0b10000000 | ((byte)(lumaG + 32))));
                         stream.WriteByte((byte)((((byte)(lumaR + 8)) << 4) | ((byte)(lumaB + 8))));
-                        // stream.WriteByte(0b11111111);
-                        // stream.WriteByte(pixel.R);
-                        // stream.WriteByte(pixel.G);
-                        // stream.WriteByte(pixel.B);
-                        // stream.WriteByte(pixel.A);
                     }
                     else if (pixel.A == prev.A)
                     {
